@@ -25,7 +25,7 @@ jobs:
       - name: Run tests
         run: |
           python -m unittest tests.test_sample_app
-          
+
       - name: Bump version and push
         id: versioning
         run: |
@@ -49,6 +49,4 @@ jobs:
 
       - name: Push changes
         run: |
-          git push https://github.com/${{ secrets.ACTIONS_DEPLOY_KEY }}@github.com/rafael-branco/tricentis-automation-tests.git HEAD:main
-        env:
-          GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          git push https://${{ secrets.ACTIONS_DEPLOY_KEY }}@github.com/rafael-branco/tricentis-automation-tests.git HEAD:main
