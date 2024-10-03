@@ -42,11 +42,13 @@ jobs:
 
           echo $new_version > version.txt
 
-          git config user.name "github-actions"
+          git config user.name "github-actions[bot]"
           git config user.email "actions@github.com"
           git add version.txt
           git commit -m "Bump version to $new_version"
 
       - name: Push changes
         run: |
-          git push https://${{ secrets.ACTIONS_DEPLOY_KEY }}@github.com/rafael-branco/tricentis-automation-tests.git HEAD:main
+          git push origin HEAD:main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
