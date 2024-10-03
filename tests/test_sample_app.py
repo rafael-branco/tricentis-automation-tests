@@ -16,15 +16,17 @@ from utils.screenshots import take_screenshot
 from selenium.common.exceptions import TimeoutException
 from datetime import datetime, timedelta
 from selenium.webdriver.common.by import By
-from time import sleep
+from selenium.webdriver.chrome.options import Options
 
 
 class SampleAppTest(unittest.TestCase):
     
     def setUp(self):
         # Initialize the Chrome WebDriver using WebDriver Manager
+        options = Options()
+        options.add_argument('--headless')  # Run Chrome in headless mode
         service = Service(ChromeDriverManager().install())
-        self.driver = webdriver.Chrome(service=service)
+        self.driver = webdriver.Chrome(service=service, options=options)
         self.driver.maximize_window()
         self.driver.get("http://sampleapp.tricentis.com/101/app.php")
 
